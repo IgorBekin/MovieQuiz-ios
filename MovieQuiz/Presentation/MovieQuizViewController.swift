@@ -1,16 +1,32 @@
 import UIKit
+struct QuizStepViewModel {
+    let image: UIImage
+    let question: String
+    let questionNumber: String
+}
 
+struct QuizResultsViewModel {
+    let title: String
+    let text: String
+    let buttonText: String
+}
+
+struct QuizQuestion {
+    let image: String
+    let text: String
+    let correctAnswer: Bool
+}
 final class MovieQuizViewController: UIViewController {
     
-    @IBOutlet weak var counterLabel: UILabel!
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var textLabel: UILabel!
-    @IBAction func yesButtonClicked(_ sender: UIButton) {
+    @IBOutlet private var counterLabel: UILabel!
+    @IBOutlet private var imageView: UIImageView!
+    @IBOutlet private var textLabel: UILabel!
+    @IBAction private func yesButtonClicked(_ sender: UIButton) {
         let currentQuestion = questions[currentQuestionIndex]
         let givenAnswer = true
         showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
     }
-    @IBAction func noButtonClicked(_ sender: UIButton) {
+    @IBAction private func noButtonClicked(_ sender: UIButton) {
         let currentQuestion = questions[currentQuestionIndex]
         let givenAnswer = false
         showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
@@ -18,23 +34,7 @@ final class MovieQuizViewController: UIViewController {
     private var correctAnswers: Int = 0
     private var currentQuestionIndex: Int = 0
     
-    struct QuizStepViewModel {
-        let image: UIImage
-        let question: String
-        let questionNumber: String
-    }
     
-    struct QuizResultsViewModel {
-        let title: String
-        let text: String
-        let buttonText: String
-    }
-    
-    struct QuizQuestion {
-        let image: String
-        let text: String
-        let correctAnswer: Bool
-    }
     private let questions: [QuizQuestion] = [
         QuizQuestion(
             image: "The Godfather",
