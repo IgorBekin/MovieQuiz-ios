@@ -2,9 +2,6 @@ import UIKit
 
 
 
-
-
-
 final class MovieQuizViewController: UIViewController {
     
     @IBOutlet private var counterLabel: UILabel!
@@ -27,7 +24,7 @@ final class MovieQuizViewController: UIViewController {
     private var correctAnswers: Int = 0
     private var currentQuestionIndex: Int = 0
     private let questionsAmount: Int = 10 //Общее количество вопросов для игры
-    private let questionFactory: QuestionFactory = QuestionFactory() //Фабрика вопросов questionFactory
+    private let questionFactory: QuestionFactoryProtocol = QuestionFactory() //свойство questionFactory имеет тип QuestionFactoryProtocol
     private var currentQuestion: QuizQuestion? //Текущий вопрос который видит пользователь
     
     
@@ -115,4 +112,4 @@ final class MovieQuizViewController: UIViewController {
         }
     }
 }
-     
+

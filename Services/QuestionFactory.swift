@@ -7,7 +7,15 @@
 
 import Foundation
 
-class QuestionFactory { //создаем класс QuestionFactory (Фабрика вопросов)
+class QuestionFactory: QuestionFactoryProtocol { //создаем класс QuestionFactory (Фабрика вопросов)
+    
+    func requestNextQuestion() -> QuizQuestion? {                       // 1
+        guard let index = (0..<questions.count).randomElement() else {  // 2
+            return nil
+        }
+        return questions[safe: index]                           // 3
+    }
+}
     private let questions: [QuizQuestion] = [
         QuizQuestion(
             image: "The Godfather",
@@ -50,10 +58,3 @@ class QuestionFactory { //создаем класс QuestionFactory (Фабри�
             text: "Рейтинг этого фильма больше чем 6?",
             correctAnswer: false)
     ]
-    func requestNextQuestion() -> QuizQuestion? {                       // 1
-        guard let index = (0..<questions.count).randomElement() else {  // 2
-            return nil
-        }
-        return questions[safe: index]                           // 3
-    }
-}
